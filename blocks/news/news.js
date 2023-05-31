@@ -1,7 +1,7 @@
+import { fetchIndex } from '../../scripts/scripts.js';
 
-async function getLatestNewsArticle() {
-  const resp = await fetch(`${window.location.origin}/query-index.json`);
-  const json = await resp.json();
+export async function getLatestNewsArticleInt(ffunc) {
+  const json = await ffunc('query-index');
 
   const result = json.data
     .filter((entry) => entry.path.startsWith('/news/'))
@@ -14,28 +14,21 @@ async function getLatestNewsArticle() {
   return result[0];
 }
 
+function getLatestNewsArticle() {
+  return getLatestNewsArticleInt(fetchIndex);
+}
+
 export default async function decorate(block) {
-  // el.innerText = 'News!';
   const article = await getLatestNewsArticle();
   if (!article) {
     return;
   }
 
-  // Use text to specify the html
+  const title = 'News'; // TODO obtain from placeholders i18n
   const dt = new Date(article.lastModified * 1000);
+  const date = dt.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' });
 
-  const newsHTML = `News ${dt}`;
-  const titleSpan = document.createElement('span');
-  titleSpan.innerText = 'News'; // TODO i18n
-  // block.appendChild(titleSpan);
-
-  const dateSpan = document.createElement('span');
-  dateSpan.innerText = dt.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' });
-  // block.appendChild(dateSpan);
-
-  const link = document.createElement('a');
-  link.href = article.path;
-  link.innerText = article.title;
-  // block.appendChild(link);
+  const newsHTML = `<span>${title}</span> <span>${date}</span>
+    <a href="${article.path}">${article.title}</a>`;
   block.innerHTML = newsHTML;
 }

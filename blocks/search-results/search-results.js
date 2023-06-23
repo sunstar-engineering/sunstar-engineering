@@ -1,4 +1,10 @@
-import { fetchIndex, fixExcelFilterZeroes, getSearchWidget } from '../../scripts/scripts.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import {
+  fetchIndex,
+  fixExcelFilterZeroes,
+  getLanguage,
+  getSearchWidget,
+} from '../../scripts/scripts.js';
 
 export function getSearchParams(searchParams) {
   let curPage = new URLSearchParams(searchParams).get('pg');
@@ -106,8 +112,10 @@ export function addPagingWidget(
   div.appendChild(nav);
 }
 
-async function searchPages(term, page) {
-  const json = await fetchIndex('query-index');
+async function searchPages(placeholders, term, page) {
+  const sheet = getLanguage() === 'en' ? undefined : `${getLanguage()}-search`;
+
+  const json = await fetchIndex('query-index', sheet);
   fixExcelFilterZeroes(json.data);
 
   const resultsPerPage = 10;
@@ -121,7 +129,7 @@ async function searchPages(term, page) {
 
   const summary = document.createElement('h3');
   summary.classList.add('search-summary');
-  summary.innerHTML = `${result.length} result${result.length === 1 ? '' : 's'} found for "<strong>${term}</strong>"`;
+  summary.innerHTML = `${result.length} ${placeholders.resultstext} "<strong>${term}</strong>"`;
   div.appendChild(summary);
 
   const curPage = result.slice(startResult, startResult + resultsPerPage);
@@ -180,12 +188,13 @@ async function searchPages(term, page) {
  */
 export default async function decorate(block, curLocation = window.location) {
   const { searchTerm, curPage } = getSearchParams(curLocation.search);
+  const placeholders = await fetchPlaceholders(getLanguage());
 
   block.innerHTML = '';
-  block.append(getSearchWidget(searchTerm, true));
+  block.append(getSearchWidget(placeholders, searchTerm, true));
 
   if (searchTerm) {
-    const results = await searchPages(searchTerm, curPage);
+    const results = await searchPages(placeholders, searchTerm, curPage);
     block.append(...results);
   }
 }

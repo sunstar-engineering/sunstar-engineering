@@ -158,6 +158,16 @@ describe('Search Results', () => {
   });
 
   it('Page generation', async () => {
+    const placeholders = {
+      resultstext: 'matches for',
+    };
+    window.placeholders = {
+      'translation-loaded': {},
+      translation: {
+        en: placeholders,
+      },
+    };
+
     const queryIndex = '/query-index.json';
     const mf = sinon.stub(window, 'fetch');
     mf.callsFake((v) => {
@@ -198,7 +208,7 @@ describe('Search Results', () => {
     const searchSummary = block.children[1];
     expect(searchSummary.nodeName).to.equal('H3');
     expect(searchSummary.classList.toString()).to.equal('search-summary');
-    expect(searchSummary.innerHTML).to.equal('2 results found for "<strong>tex</strong>"');
+    expect(searchSummary.innerHTML).to.equal('2 matches for "<strong>tex</strong>"');
 
     const res1 = block.children[2];
     expect(res1.nodeName).to.equal('DIV');

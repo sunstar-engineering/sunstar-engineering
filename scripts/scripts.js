@@ -40,8 +40,8 @@ export function getLanguageFromPath(pathname, resetCache = false) {
   return language;
 }
 
-export function getLanguage() {
-  return getLanguageFromPath(window.location.pathname);
+export function getLanguage(curPath = window.location.pathname, resetCache = false) {
+  return getLanguageFromPath(curPath, resetCache);
 }
 /**
  * Builds hero block and prepends to main in a new section.
@@ -193,6 +193,8 @@ export function fixExcelFilterZeroes(data) {
 }
 
 export async function fetchIndex(indexFile, sheet, pageSize = 500) {
+  const idxKey = indexFile.concat(sheet || '');
+
   const handleIndex = async (offset) => {
     const sheetParam = sheet ? `&sheet=${sheet}` : '';
 
@@ -203,31 +205,31 @@ export async function fetchIndex(indexFile, sheet, pageSize = 500) {
       complete: (json.limit + json.offset) === json.total,
       offset: json.offset + pageSize,
       promise: null,
-      data: [...window.index[indexFile].data, ...json.data],
+      data: [...window.index[idxKey].data, ...json.data],
     };
 
     return newIndex;
   };
 
   window.index = window.index || {};
-  window.index[indexFile] = window.index[indexFile] || {
+  window.index[idxKey] = window.index[idxKey] || {
     data: [],
     offset: 0,
     complete: false,
     promise: null,
   };
 
-  if (window.index[indexFile].complete) {
-    return window.index[indexFile];
+  if (window.index[idxKey].complete) {
+    return window.index[idxKey];
   }
 
-  if (window.index[indexFile].promise) {
-    return window.index[indexFile].promise;
+  if (window.index[idxKey].promise) {
+    return window.index[idxKey].promise;
   }
 
-  window.index[indexFile].promise = handleIndex(window.index[indexFile].offset);
-  const newIndex = await (window.index[indexFile].promise);
-  window.index[indexFile] = newIndex;
+  window.index[idxKey].promise = handleIndex(window.index[idxKey].offset);
+  const newIndex = await (window.index[idxKey].promise);
+  window.index[idxKey] = newIndex;
 
   return newIndex;
 }

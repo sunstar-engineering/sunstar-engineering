@@ -212,9 +212,16 @@ async function searchPages(placeholders, term, page) {
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
-export default async function decorate(block, curLocation = window.location) {
+export default async function decorate(
+  block,
+  curLocation = window.location,
+  resetLanguageCache = false,
+) {
   const { searchTerm, curPage } = getSearchParams(curLocation.search);
-  const placeholders = await fetchPlaceholders(getLanguage());
+  const placeholders = await fetchPlaceholders(getLanguage(
+    curLocation.pathname,
+    resetLanguageCache,
+  ));
 
   block.innerHTML = '';
   block.append(getSearchWidget(placeholders, searchTerm, true));

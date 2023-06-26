@@ -1,0 +1,43 @@
+main .hero-horizontal-tabs.block {
+  display: flex;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+main .hero-horiz-tabs-text {
+  background-color: #00587C;
+  color: rgba(255,255,255,0.7);
+}
+
+main .hero-horiz-tabs-text > h2 {
+  color: white;
+}
+
+main .hero-horiz-tabs-text > h6 {
+  color: rgba(255,255,255,0.7);
+}
+
+main .hero-horiz-tabs-img picture {
+  display: block;
+  width: 897px;
+}
+
+main .hero-horizontal-tabs nav {
+  display: block;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+main .hero-horizontal-tabs nav a {
+  background-color: rgb(240, 245, 247);
+  padding: 5px;
+  color: rgb(60, 70, 80);
+}
+
+main .hero-horizontal-tabs nav a.current {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 88, 124);
+}

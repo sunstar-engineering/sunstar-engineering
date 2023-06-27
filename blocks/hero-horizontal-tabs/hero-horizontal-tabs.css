@@ -44,9 +44,7 @@ main .hero-horizontal-tabs nav a {
   background-color: var(--transparent-blue-light-color);
   padding: 16px 32px 18px;
   color: var(--link-color);
-  border-left-color: rgb(217, 223, 226);
-  border-left-width: 1px;
-  border-left-style: solid;
+  border-left: 1px solid #d9dfe2;
   font-size: var(--body-font-size-l);
 }
 

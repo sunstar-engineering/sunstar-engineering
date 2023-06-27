@@ -47,8 +47,6 @@ function getTabs(block) {
   // });
 
   // return tabs;
-
-
   // const div = getNamedValueFromTable(block, 'tabs');
   // div.classList.add('hero-horiz-tabs-tabs');
   // return div;
@@ -83,12 +81,12 @@ export default async function decorate(block) {
   const image = getImage(block);
   const tabs = getTabs(block);
 
+  const leftDiv = document.createElement('div');
+  leftDiv.classList.add('hero-horiz-tabs-panel');
+  leftDiv.append(text);
+  leftDiv.append(tabs);
 
-  // block.classList.add('full-width');
-
-  block.replaceChildren(text);
+  block.replaceChildren(leftDiv);
   block.append(image);
-  block.append(tabs);
-  // block.replaceChildren(tabs);
-  // block.append(heroImage);
+  // block.append(tabs);
 }

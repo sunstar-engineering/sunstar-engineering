@@ -4,48 +4,72 @@ main .hero-horizontal-tabs-wrapper {
 
 main .hero-horizontal-tabs.block {
   display: flex;
-  max-width: 1200px;
+  flex-direction: column;
+}
+
+main .hero-horiz-tabs-panel {
+  position: relative;
 }
 
 main .hero-horiz-tabs-text {
   color: var(--muted-text);
-  padding-top: 88px;
+  padding-top: 26px;
+  padding-bottom: 72px;
+  margin-left: 16px;
   margin-right: 32px;
-  min-width: 472px;
+  min-width: 436px;
+}
+
+main .hero-horiz-tabs-img {
+  order: -1;
 }
 
 main .hero-horiz-tabs-text > h2 {
   color: white;
-  font-size: 2.25rem;
+  font-size: 32px;
   font-weight: var(--font-weight-small);
   line-height: 1.3em;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   margin-top: 0;
 }
 
 main .hero-horiz-tabs-text > h6 {
   color: var(--muted-text);
+  font-size: 12px;
   letter-spacing: 0.7px;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
+}
+
+main .hero-horiz-tabs-text > p {
+  font-size: 14px;
 }
 
 main .hero-horiz-tabs-img picture {
   display: block;
-  width: 897px;
-  height: 520px;
+  height: 240px;
+}
+
+main .hero-horiz-tabs-img picture > img {
+  object-fit: cover;
+  object-position: center;
+  max-height: 100%;
+  min-width: 100%;
 }
 
 main .hero-horizontal-tabs nav {
   position: absolute;
-  bottom: 15px;
+  bottom: 15px; /* <-- */
+  bottom: 8px;
+  left: 16px;
 }
 
 main .hero-horizontal-tabs nav a {
   background-color: var(--transparent-blue-light-color);
-  padding: 16px 32px 18px;
+  padding: 11px 16px;
   color: var(--link-color);
   border-left: 1px solid #d9dfe2;
-  font-size: var(--body-font-size-l);
+  font-size: var(--body-font-size-s);
+  font-weight: var(--font-weight-bold);
 }
 
 main .hero-horizontal-tabs nav a.current {
@@ -53,6 +77,69 @@ main .hero-horizontal-tabs nav a.current {
   color: var(--primary);
 }
 
-@media (todo) {
+@media (min-width:62rem) {
+  main .hero-horizontal-tabs.block {
+    flex-direction: row;
+    max-width: 872px;
+  }
 
+  main .hero-horiz-tabs-text {
+    padding-top: 66px;
+    margin-left: 0;
+  }
+
+  main .hero-horiz-tabs-text > h6 {
+    font-size: 14px;
+  }
+
+  main .hero-horiz-tabs-img {
+    order: 0;
+  }
+
+  main .hero-horiz-tabs-img picture {
+    width: 690px;
+    height: 400px;
+  }
+
+  main .hero-horizontal-tabs nav {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+  }
+
+  main .hero-horizontal-tabs nav a {
+    font-size: var(--body-font-size-l);
+    font-weight: var(--font-weight-regular);
+    padding: 16px 32px 18px;
+  }
+}
+
+@media (min-width:77rem) {
+  main .hero-horizontal-tabs.block {
+    max-width: 1200px;
+  }
+
+  main .hero-horiz-tabs-text {
+    padding-top: 88px;
+    margin-right: 32px;
+    min-width: 472px;
+  }
+
+  main .hero-horiz-tabs-text > h2 {
+    font-size: 2.25rem;
+    margin-bottom: 20px;
+  }
+
+  main .hero-horiz-tabs-text > h6 {
+    margin-bottom: 24px;
+  }
+
+  main .hero-horiz-tabs-text > p {
+    font-size: 16px;
+  }
+
+  main .hero-horiz-tabs-img picture {
+    width: 897px;
+    height: 520px;
+  }
 }

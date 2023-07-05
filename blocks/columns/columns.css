@@ -72,6 +72,41 @@
   margin: 0 1rem;
 }
 
+.columns.top-down {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.columns.top-down > div {
+  align-items: flex-start;
+  max-width: 800px;
+}
+
+.columns.plain-links > div > div,
+.columns.plain-links > div > div > p {
+    font-size: 14px;
+}
+
+.columns.plain-links > div h6 {
+  color: #3c4650;
+  border-bottom: 1px #3c46501F solid;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding-bottom: 0.5rem;
+  text-transform: unset;
+}
+
+.columns.plain-links > div a {
+  font-size: 16px;
+}
+
+.columns.plain-links a.button.primary {
+  display: inline-block;
+  font-weight: var(--font-weight-medium);
+  background-color: unset;
+  color: var(--secondary);
+}
+
 @media (min-width: 62rem) {
   .columns {
     margin-bottom: 7.5rem;

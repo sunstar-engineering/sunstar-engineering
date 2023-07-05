@@ -1,3 +1,13 @@
+.columns-container .section-container {
+  margin-top: 74px;
+  margin-bottom: 214px;
+}
+
+.columns-container h3 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
 .columns {
   margin: 2rem 0 4rem;
 }
@@ -73,18 +83,32 @@
 }
 
 .columns.top-down {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 40px;
+  margin-left: 0;
+  margin-bottom: 0px;
 }
 
 .columns.top-down > div {
   align-items: flex-start;
-  max-width: 800px;
+  gap: 1rem;
+}
+
+.columns.top-down.columns-2-cols {
+  max-width: 790px;
+}
+
+.columns.top-down.columns-3-cols {
+  max-width: 1200px;
 }
 
 .columns.plain-links > div > div,
 .columns.plain-links > div > div > p {
     font-size: 14px;
+    margin-left: 0;
+}
+
+.columns.plain-links > div > div > p:last-of-type {
+  margin-bottom: 0;
 }
 
 .columns.plain-links > div h6 {
@@ -94,6 +118,9 @@
   line-height: 1.5;
   padding-bottom: 0.5rem;
   text-transform: unset;
+}
+.columns.plain-links > div li {
+  height: 2.5rem;
 }
 
 .columns.plain-links > div a {
@@ -143,5 +170,4 @@
     order: unset;
     flex-basis: 50%;
   }
-
 }

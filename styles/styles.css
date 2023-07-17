@@ -817,3 +817,11 @@ main .section.thank-you p {
     max-width: 1200px
   }
 }
+
+div.news-image-caption {
+  color: #6D757C;
+  font-size: 12px;
+  text-align: center;
+  margin-top: -1.5em;
+  margin-bottom: 1em;
+}

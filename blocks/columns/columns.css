@@ -77,21 +77,12 @@
   margin-top: 0;
 }
 
-.columns.overlap-text-with-image > div > div > p {
-  margin-bottom: 2rem;
-}
-
 .columns > div > div.non-singleton-img {
   margin: 0 1rem;
 }
 
 .columns.crop-image > div {
   align-items: stretch;
-}
-
-.columns.overlap-text-with-image > div > div.non-singleton-img {
-  margin-bottom: -5.25rem;
-  z-index: 1;
 }
 
 .columns.collapse > div > div.non-singleton-img {
@@ -260,10 +251,6 @@
 
   .columns.invert-image-order-in-narrow-view > div > .columns-img-col {
     order: unset;
-  }
-
-  .columns.overlap-text-with-image > div > div.non-singleton-img {
-    margin-bottom: unset;
   }
 
   .columns.plain-links > div a {

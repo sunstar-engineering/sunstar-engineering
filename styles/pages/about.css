@@ -39,6 +39,7 @@ body.about main a.button.tertiary {
     font-size: var(--heading-font-size-mxl);
   }
 
+  body.about main .overlapping-content.edge-to-edge-on-narrow .overlapping-content-item img,
   body.about main .section:not(.full-width) .block.columns img {
     height: 100%;
   }

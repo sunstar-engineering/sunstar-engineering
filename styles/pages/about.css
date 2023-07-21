@@ -51,6 +51,11 @@ body.about main a.button.tertiary {
   body.about main .section:not(.full-width) .block.columns.crop-image img {
     object-fit: contain;
   }
+
+  body.about main .block.overlapping-content > div.background .background-wrapper {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 }
 
 @media (min-width: 77rem) {
@@ -64,5 +69,10 @@ body.about main a.button.tertiary {
 
   body.about main .section.full-width .block.columns.crop-image img {
     max-height: 33.75rem;
+  }
+
+  body.about main .block.overlapping-content > div.background .background-wrapper {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }

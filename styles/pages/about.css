@@ -1,0 +1,5 @@
+@media (min-width: 62rem) {
+  body.about main .block.columns > div {
+    gap: 11.25rem;
+  }
+}

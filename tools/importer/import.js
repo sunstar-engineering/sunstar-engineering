@@ -515,6 +515,140 @@ function fixRelativeLinks(document) {
   });
 }
 
+function addHeroBanner(document) {
+  const aboutHeroSection = document.querySelector('.about-hero-section');
+  if (aboutHeroSection) {
+    const cells = [['Hero Banner']];
+    cells.push(['media', aboutHeroSection.querySelector('img')]);
+
+    const bannerBody = document.createElement('div');
+    bannerBody.appendChild(aboutHeroSection.querySelector('h6'));
+    bannerBody.appendChild(aboutHeroSection.querySelector('h2'));
+
+    const playButton = aboutHeroSection.querySelector('.play');
+    if (playButton) {
+      const play = document.createElement('a');
+      play.href = '#'; // This is a placeholder. It should point to modal fragment.
+      play.textContent = playButton.querySelector('span').textContent;
+      bannerBody.appendChild(play);
+    }
+    cells.push([bannerBody]);
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    aboutHeroSection.replaceWith(table);
+    const sectionMetadata = createSectionMetadata({ Style: 'Full-width' }, document);
+    table.after(document.createElement('hr'));
+    table.after(sectionMetadata);
+  }
+}
+
+function addFeaturesSection(document) {
+  const featuresSection = document.querySelector('.features');
+  if (featuresSection) {
+    const textBlock1 = [['Text(black, left-mobile-only, features-detail)']];
+    textBlock1.push([featuresSection.querySelector('h3')]);
+    const textBlock1Tbl = WebImporter.DOMUtils.createTable(textBlock1, document);
+    featuresSection.appendChild(textBlock1Tbl);
+
+    const textBlock2 = [['Text(left-mobile-only, features)']];
+    textBlock2.push([featuresSection.querySelector('h2')]);
+    const textBlock2Tbl = WebImporter.DOMUtils.createTable(textBlock2, document);
+    featuresSection.appendChild(textBlock2Tbl);
+
+    const cards = [['Cards']];
+    const featuresItems = featuresSection.querySelector('.features-items');
+    featuresItems.querySelectorAll('.single-feature').forEach((singleFeature, index) => {
+      cards.push([`:driving-components-0${index + 1}:`, singleFeature.querySelector('.content')]);
+    });
+    featuresSection.appendChild(WebImporter.DOMUtils.createTable(cards, document));
+    const sectionMetadata = createSectionMetadata({ Style: 'Centered, Narrow' }, document);
+    featuresSection.appendChild(sectionMetadata);
+    featuresSection.appendChild(document.createElement('hr'));
+  }
+}
+
+function getSpacer(cfg, document) {
+  const cells = [['Spacer']];
+  Object.keys(cfg).forEach((key) => {
+    cells.push([key, cfg[key]]);
+  });
+  return WebImporter.DOMUtils.createTable(cells, document);
+}
+
+function getTextBlock(element, qualifiers, document) {
+  const cells = [[`Text(${qualifiers.join(', ')})`]];
+  cells.push([element]);
+  return WebImporter.DOMUtils.createTable(cells, document);
+}
+
+function getColumnsBlock(contents, qualifiers, document) {
+  const cells = [[`Columns(${qualifiers.join(', ')})`]];
+  cells.push(contents);
+  return WebImporter.DOMUtils.createTable(cells, document);
+}
+
+function getCardsBlock(contents, qualifiers, document) {
+  const cells = [[`Cards(${qualifiers.join(', ')})`]];
+  contents.forEach((content) => {
+    cells.push(content);
+  });
+  return WebImporter.DOMUtils.createTable(cells, document);
+}
+
+function encloseNavItemsInDiv(partByInfo, document) {
+  const navElements = partByInfo.querySelectorAll('nav');
+
+  navElements.forEach((navElement) => {
+    const divElement = document.createElement('div');
+    divElement.innerHTML = navElement.innerHTML; // Preserve the content of the nav item
+    navElement.replaceWith(divElement); // Replace nav with div
+  });
+
+  // Remove "figure" elements
+  const figureElements = partByInfo.querySelectorAll('figure');
+  figureElements.forEach((figureElement) => {
+    figureElement.remove();
+  });
+
+  return partByInfo;
+}
+
+function parsePartByInfo(partByInfo) {
+  // Get all the div elements with class "partByInfo"
+  const partByInfoDivs = partByInfo.querySelectorAll('.partByInfo > div');
+
+  // Prepare an empty list to store the results
+  const resultList = [];
+
+  // Loop through each "partByInfo" div and extract the required elements
+  partByInfoDivs.forEach((div) => {
+    const imgElement = div.querySelector('figure img');
+    const navElement = div.querySelector('nav');
+
+    if (imgElement && navElement) {
+      const listEntry = [imgElement, navElement];
+      resultList.push(listEntry);
+    }
+  });
+
+  return resultList;
+}
+
+function addSearchByPartsSection(document) {
+  const searchByPartsSection = document.querySelector('.searchByParts');
+  if (searchByPartsSection) {
+    searchByPartsSection.appendChild(getSpacer({ Mobile: '32px', Desktop: '80px' }, document));
+    searchByPartsSection.appendChild(getTextBlock(searchByPartsSection.querySelector('h2'), ['left aligned', 'black'], document));
+
+    const cardContents = parsePartByInfo(searchByPartsSection.querySelector('.partByInfo'));
+    searchByPartsSection.appendChild(getCardsBlock(cardContents, ['Mobile', 'Buttons', 'Machine Parts'], document));
+
+    const contents = [];
+    contents.push([searchByPartsSection.querySelector('.infographic')]);
+    contents.push([encloseNavItemsInDiv(searchByPartsSection.querySelector('.partByInfo'), document)]);
+    searchByPartsSection.appendChild(getColumnsBlock(contents, ['Desktop', 'Tablet', 'No buttons', 'Machine Parts'], document));
+  }
+}
+
 function customImportLogic(doc) {
   removeCookiesBanner(doc);
 
@@ -533,6 +667,9 @@ function customImportLogic(doc) {
   convertBackgroundImgsToForegroundImgs(doc);
   changeNewsSocial(doc);
   addNewsBanner(doc);
+  addHeroBanner(doc);
+  addFeaturesSection(doc);
+  addSearchByPartsSection(doc);
 }
 
 export default {

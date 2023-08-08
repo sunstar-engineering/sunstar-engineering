@@ -1,6 +1,6 @@
-footer {
+body footer {
   padding: 1rem 1rem 2rem;
-  visibility: visible !important;
+  visibility: visible;
   font-size: var(--body-font-size-s);
   overflow: hidden;
 }
@@ -204,7 +204,7 @@ footer .copyright p>a:last-child {
 }
 
 @media (min-width: 62rem) {
-  footer {
+  body footer {
     padding-top: 3rem;
   }
 

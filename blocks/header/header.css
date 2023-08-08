@@ -1,7 +1,7 @@
 /* header and nav layout */
-header {
+body header {
   width: 100%;
-  visibility: visible !important;
+  visibility: visible;
   background-color: var(--background-color);
   position: relative;
   z-index: 100;
@@ -555,7 +555,7 @@ header .lang-picker {
 }
 
 @media (min-width: 77rem) {
-  header {
+  body header {
     border-bottom: 1px solid var(--transparent-grey-light-color);
   }
 

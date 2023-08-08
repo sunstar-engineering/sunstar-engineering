@@ -1,8 +1,12 @@
 footer {
   padding: 1rem 1rem 2rem;
-  background-color: var(--primary);
+  visibility: visible !important;
   font-size: var(--body-font-size-s);
   overflow: hidden;
+}
+
+footer.background-primary-color {
+  background-color: var(--primary);
 }
 
 footer a:hover {

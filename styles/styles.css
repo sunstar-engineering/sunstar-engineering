@@ -186,6 +186,11 @@ h6 {
   font-weight: var(--font-weight-bold);
 }
 
+footer .footer:not(.appear)
+header .header:not(.appear) {
+  visibility: hidden;
+}
+
 p,
 dl,
 ol,

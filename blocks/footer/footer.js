@@ -44,6 +44,8 @@ function decorateFooter(block) {
   itemsList.forEach((item) => {
     primaryFooter.appendChild(item);
   });
+
+  // block.classList.add('appear');
 }
 
 /**
@@ -70,5 +72,6 @@ export default async function decorate(block) {
     block.append(footer);
     decorateButtons(block);
     decorateFooter(block);
+    block.classList.add('appear');
   }
 }

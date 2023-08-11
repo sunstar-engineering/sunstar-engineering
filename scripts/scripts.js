@@ -16,6 +16,7 @@ import {
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = [
+  'carousel',
   'hero',
   'hero-banner',
   'hero-horizontal-tabs',

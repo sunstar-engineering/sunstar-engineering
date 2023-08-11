@@ -22,7 +22,14 @@ const LCP_BLOCKS = [
   'hero-vertical-tabs',
   'overlapping-content',
 ]; // add your LCP blocks to the list
-const SKIP_FROM_LCP = ['breadcrumb']; // add blocks that shouldn't ever be LCP candidates to the list
+const SKIP_FROM_LCP = [
+  'breadcrumb',
+  'modal-fragment',
+  'search-results',
+  'news-banner',
+  'header',
+  'list',
+]; // add blocks that shouldn't ever be LCP candidates to the list
 // search for at least these many blocks (post-skipping-non-candidates) to find LCP candidates
 const MAX_LCP_CANDIDATE_BLOCKS = 2;
 

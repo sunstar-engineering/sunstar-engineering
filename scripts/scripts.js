@@ -187,6 +187,38 @@ async function loadFonts() {
   }
 }
 
+function preloadPicture(picture) {
+  const src = [...picture.querySelectorAll('source')]
+    .filter((source) => source.getAttribute('type') === 'image/webp')
+    .find((source) => {
+      const media = source.getAttribute('media');
+      return !media || window.matchMedia(media).matches;
+    });
+
+  const link = document.createElement('link');
+  link.setAttribute('rel', 'preload');
+  link.setAttribute('fetchpriority', 'high');
+  link.setAttribute('as', 'image');
+  link.setAttribute('href', src.getAttribute('srcset'));
+  link.setAttribute('type', src.getAttribute('type'));
+  document.head.append(link);
+}
+
+function preloadLcpBlockImages() {
+  const blocks = document.querySelectorAll('.block');
+  [...blocks]
+    .filter((block) => !SKIP_FROM_LCP.includes(block.dataset.blockName))
+    .filter((block) => LCP_BLOCKS.includes(block.dataset.blockName))
+    .forEach((block) => {
+      const pictures = block.querySelectorAll(':scope picture');
+      [...pictures].forEach((picture) => {
+        if (picture) {
+          preloadPicture(picture);
+        }
+      });
+    });
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -198,6 +230,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    preloadLcpBlockImages();
     document.body.classList.add('appear');
     await waitForLCP(LCP_BLOCKS, SKIP_FROM_LCP, MAX_LCP_CANDIDATE_BLOCKS);
     try {

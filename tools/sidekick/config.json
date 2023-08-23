@@ -15,7 +15,7 @@
       "environments": [
         "edit"
       ],
-      "url": "https://no-config--aem-assets-boilerplate--hlxsites.hlx.page/aem-asset-selector",
+      "url": "https://main--franklin-asset-selector--hlxsites.hlx.page/aem-asset-selector",
       "isPalette": true,
       "includePaths": [ "**.docx**" ],
       "paletteRect": "top: auto; bottom: 20px; left: 20px; width:1000px; height:700px"

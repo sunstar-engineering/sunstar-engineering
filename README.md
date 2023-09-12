@@ -4,7 +4,7 @@ Franklin project for https://www.sunstar-engineering.com/
 ## Environments
 - Preview: https://main--sunstar-engineering--sunstar-engineering.hlx.page/
 - Live: https://main--sunstar-engineering--sunstar-engineering.hlx.live/
-- Edit: [https://adobe.sharepoint.com/:f:/r/sites/HelixProjects/Shared%20Documents/sites/sunstar/sunstar-engineering](https://sunstarsuisse.sharepoint.com/sites/GlobalSunstarWebsite/Shared%20Documents/websites/sunstar-engineering)
+- Edit: https://sunstarsuisse.sharepoint.com/sites/GlobalSunstarWebsite/Shared%20Documents/websites/sunstar-engineering
 
 ## Installation
 

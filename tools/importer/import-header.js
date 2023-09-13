@@ -14,7 +14,7 @@
 
 const createMetadata = (main, document) => {
   const meta = {};
-  meta.robots = 'noindex';
+  meta.robots = "noindex";
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
   main.append(block);
 
@@ -22,29 +22,36 @@ const createMetadata = (main, document) => {
 };
 
 function getLanguage(url) {
-  return `${url.split('/')[1]}`;
+  return `${url.split("/")[1]}`;
 }
 
 function addTopNav(document) {
-  const ul = document.createElement('ul');
-  Array.from(document.querySelector('nav.ss-header-top').children).forEach((el) => {
-    const li = document.createElement('li');
-    if (el.tagName === 'A') {
-      if (el.classList.contains('other-site-menu')) {
-        el.innerHTML = '<a href="https://www.sunstar.com/">Sunstar Group</a><a href="https://www.sunstar.com/"><span>:link-black:</span></a>';
-      }
-      li.append(el);
-    } else if (el.tagName === 'SPAN' && el.classList.contains('links-social')) {
-      li.textContent = '[social]';
-      const social = document.createElement('ul');
-      const linkedin = '<li><a class="link" target="_blank" href="https://www.linkedin.com/company/sunstar-engineering">:linkedin:</a></li>';
-      const youtube = '<li><a class="link" target="_blank" href="https://www.youtube.com/channel/UCM7etMw7LLy-MlNmk9xPrdQ">:youtube:</a></li>';
-      social.innerHTML = linkedin + youtube;
-      li.append(social);
-    } else if (el.tagName === 'SPAN' && el.classList.contains('lang-menu')) {
-      li.textContent = '[languages]';
-      const languages = document.createElement('ul');
-      languages.innerHTML = `
+  const ul = document.createElement("ul");
+  Array.from(document.querySelector("nav.ss-header-top").children).forEach(
+    (el) => {
+      const li = document.createElement("li");
+      if (el.tagName === "A") {
+        if (el.classList.contains("other-site-menu")) {
+          el.innerHTML =
+            '<a href="https://www.sunstar.com/">Sunstar Group</a><a href="https://www.sunstar.com/"><span>:link-black:</span></a>';
+        }
+        li.append(el);
+      } else if (
+        el.tagName === "SPAN" &&
+        el.classList.contains("links-social")
+      ) {
+        li.textContent = "[social]";
+        const social = document.createElement("ul");
+        const linkedin =
+          '<li><a class="link" target="_blank" href="https://www.linkedin.com/company/sunstar-engineering">:linkedin:</a></li>';
+        const youtube =
+          '<li><a class="link" target="_blank" href="https://www.youtube.com/channel/UCM7etMw7LLy-MlNmk9xPrdQ">:youtube:</a></li>';
+        social.innerHTML = linkedin + youtube;
+        li.append(social);
+      } else if (el.tagName === "SPAN" && el.classList.contains("lang-menu")) {
+        li.textContent = "[languages]";
+        const languages = document.createElement("ul");
+        languages.innerHTML = `
         <li><a href="/">English</a></li>
         <li><a href="/cn/">简体中文</a></li>
         <li><a href="/th/">ไทย</a></li>
@@ -53,13 +60,16 @@ function addTopNav(document) {
         <li><a href="/id/">Bahasa Indonesia</a></li>
         <li><a href="/de/">Deutsch</a></li>
       `;
-      li.append(languages);
-    }
+        li.append(languages);
+      }
 
-    ul.append(li);
-  });
-  document.querySelector('nav.ss-header-top').after(document.createElement('hr'));
-  document.querySelector('nav.ss-header-top').replaceWith(ul);
+      ul.append(li);
+    }
+  );
+  document
+    .querySelector("nav.ss-header-top")
+    .after(document.createElement("hr"));
+  document.querySelector("nav.ss-header-top").replaceWith(ul);
 }
 
 function addMidNav(document, url) {
@@ -67,45 +77,47 @@ function addMidNav(document, url) {
   if (lang) {
     lang = `${lang}/`;
   }
-  const midNav = document.querySelector('nav.ss-header-middle');
+  const midNav = document.querySelector("nav.ss-header-middle");
   if (midNav) {
     midNav.innerHTML = `
-    <a href='https://main--sunstar-engineering--hlxsites.hlx.page/${lang}'>:sunstar-logo:</a>
+    <a href='https://main--sunstar-engineering--sunstar-engineering.hlx.page/${lang}'>:sunstar-logo:</a>
     <h4>Sunstar Engineering</h4>
   `;
-    midNav.after(document.createElement('hr'));
+    midNav.after(document.createElement("hr"));
   }
 }
 
 function addBottomNav(document) {
-  const ul = document.createElement('ul');
-  const bottmNav = document.querySelector('nav.ss-header-bottom');
-  bottmNav.querySelectorAll(':scope > ul > li:not(.d-lg-none):not(.mobile-content)').forEach((li) => {
-    const a = li.querySelector('a');
-    const newLi = document.createElement('li');
-    newLi.append(a);
-    ul.append(newLi);
+  const ul = document.createElement("ul");
+  const bottmNav = document.querySelector("nav.ss-header-bottom");
+  bottmNav
+    .querySelectorAll(":scope > ul > li:not(.d-lg-none):not(.mobile-content)")
+    .forEach((li) => {
+      const a = li.querySelector("a");
+      const newLi = document.createElement("li");
+      newLi.append(a);
+      ul.append(newLi);
 
-    const megaSubMenu = li.querySelectorAll(':scope .mega .mega-sub-menu');
-    if (megaSubMenu) {
-      const level2UL = document.createElement('ul');
-      megaSubMenu.forEach((item) => {
-        const level2Li = document.createElement('li');
-        level2Li.append(item.querySelector(':scope > h6 > a'));
-        level2Li.querySelector('a').textContent += ':ang-white:';
-        level2UL.append(level2Li);
+      const megaSubMenu = li.querySelectorAll(":scope .mega .mega-sub-menu");
+      if (megaSubMenu) {
+        const level2UL = document.createElement("ul");
+        megaSubMenu.forEach((item) => {
+          const level2Li = document.createElement("li");
+          level2Li.append(item.querySelector(":scope > h6 > a"));
+          level2Li.querySelector("a").textContent += ":ang-white:";
+          level2UL.append(level2Li);
 
-        const level3UL = document.createElement('ul');
-        item.querySelectorAll(':scope > a').forEach((item2) => {
-          const level3Li = document.createElement('li');
-          level3Li.append(item2);
-          level3UL.append(level3Li);
+          const level3UL = document.createElement("ul");
+          item.querySelectorAll(":scope > a").forEach((item2) => {
+            const level3Li = document.createElement("li");
+            level3Li.append(item2);
+            level3UL.append(level3Li);
+          });
+          level2Li.append(level3UL);
         });
-        level2Li.append(level3UL);
-      });
-      newLi.append(level2UL);
-    }
-  });
+        newLi.append(level2UL);
+      }
+    });
   bottmNav.replaceWith(ul);
 }
 
@@ -127,17 +139,16 @@ export default {
    */
   transformDOM: ({
     // eslint-disable-next-line no-unused-vars
-    document, url, html, params,
+    document,
+    url,
+    html,
+    params,
   }) => {
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
 
     // use helper method to remove header, footer, etc.
-    WebImporter.DOMUtils.remove(main, [
-      'noscript',
-      'main',
-      'footer',
-    ]);
+    WebImporter.DOMUtils.remove(main, ["noscript", "main", "footer"]);
 
     customImportLogic(document, url);
     // create the metadata block and append it to the main element
@@ -157,6 +168,12 @@ export default {
    */
   generateDocumentPath: ({
     // eslint-disable-next-line no-unused-vars
-    document, url, html, params,
-  }) => WebImporter.FileUtils.sanitizePath(new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')),
+    document,
+    url,
+    html,
+    params,
+  }) =>
+    WebImporter.FileUtils.sanitizePath(
+      new URL(url).pathname.replace(/\.html$/, "").replace(/\/$/, "")
+    ),
 };

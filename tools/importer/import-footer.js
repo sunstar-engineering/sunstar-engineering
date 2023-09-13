@@ -14,7 +14,7 @@
 
 const createMetadata = (main, document) => {
   const meta = {};
-  meta.robots = 'noindex';
+  meta.robots = "noindex";
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
   main.append(block);
 
@@ -22,7 +22,7 @@ const createMetadata = (main, document) => {
 };
 
 function createSectionMetadata(cfg, doc) {
-  const cells = [['Section Metadata']];
+  const cells = [["Section Metadata"]];
   Object.keys(cfg).forEach((key) => {
     cells.push([key, cfg[key]]);
   });
@@ -30,67 +30,78 @@ function createSectionMetadata(cfg, doc) {
 }
 
 function addDetailPageNav(document) {
-  const detailPageNav = document.querySelector('.mega-footer-container');
-  detailPageNav.querySelectorAll('a').forEach((a) => {
-    a.href = 'https://main--sunstar-engineering--hlxsites.hlx.live'.concat(a.href).replace(/\/$/, '');
+  const detailPageNav = document.querySelector(".mega-footer-container");
+  detailPageNav.querySelectorAll("a").forEach((a) => {
+    a.href = "https://main--sunstar-engineering--sunstar-engineering.hlx.live"
+      .concat(a.href)
+      .replace(/\/$/, "");
   });
-  detailPageNav.after(document.createElement('hr'));
-  detailPageNav.after(createSectionMetadata({ Style: 'Primary' }, document));
+  detailPageNav.after(document.createElement("hr"));
+  detailPageNav.after(createSectionMetadata({ Style: "Primary" }, document));
 }
 
 function addCategoryNav(document) {
-  const ul = document.createElement('ul');
-  document.querySelectorAll('.footer-nav-links > a').forEach((a) => {
-    a.href = 'https://main--sunstar-engineering--hlxsites.hlx.live'.concat(a.href).replace(/\/$/, '');
-    const li = document.createElement('li');
+  const ul = document.createElement("ul");
+  document.querySelectorAll(".footer-nav-links > a").forEach((a) => {
+    a.href = "https://main--sunstar-engineering--sunstar-engineering.hlx.live"
+      .concat(a.href)
+      .replace(/\/$/, "");
+    const li = document.createElement("li");
     li.append(a);
     ul.append(li);
   });
-  const navLinks = document.querySelector('.footer-nav-links');
-  navLinks.after(document.createElement('hr'));
-  navLinks.after(createSectionMetadata({ Style: 'Nav-Links' }, document));
+  const navLinks = document.querySelector(".footer-nav-links");
+  navLinks.after(document.createElement("hr"));
+  navLinks.after(createSectionMetadata({ Style: "Nav-Links" }, document));
   navLinks.replaceWith(ul);
-  document.querySelector('.footer-mid.mobile-only').remove();
+  document.querySelector(".footer-mid.mobile-only").remove();
 }
 
 function addLogoAndSocial(document) {
-  const logoContent = document.querySelector('.footer-mid.desktop-only');
-  const sunstarGroupLink = logoContent.querySelector('a');
-  sunstarGroupLink.textContent += ' :link-white:';
-  logoContent.after(document.createElement('hr'));
-  logoContent.after(createSectionMetadata({ Style: 'Groups' }, document));
+  const logoContent = document.querySelector(".footer-mid.desktop-only");
+  const sunstarGroupLink = logoContent.querySelector("a");
+  sunstarGroupLink.textContent += " :link-white:";
+  logoContent.after(document.createElement("hr"));
+  logoContent.after(createSectionMetadata({ Style: "Groups" }, document));
 
-  const socialContent = document.querySelector('.nav-container.social');
-  const h6 = socialContent.querySelector('h6');
-  const title = document.createElement('h1');
+  const socialContent = document.querySelector(".nav-container.social");
+  const h6 = socialContent.querySelector("h6");
+  const title = document.createElement("h1");
   title.textContent = h6.textContent;
   h6.replaceWith(title);
-  socialContent.querySelectorAll('nav > a').forEach((a) => {
-    const div = document.createElement('div');
-    a.textContent = a.textContent === 'Linkedin' ? `:linkedin: ${a.textContent}` : `:youtube: ${a.textContent}`;
+  socialContent.querySelectorAll("nav > a").forEach((a) => {
+    const div = document.createElement("div");
+    a.textContent =
+      a.textContent === "Linkedin"
+        ? `:linkedin: ${a.textContent}`
+        : `:youtube: ${a.textContent}`;
     div.append(a);
     socialContent.append(div);
   });
-  socialContent.after(document.createElement('hr'));
-  socialContent.after(createSectionMetadata({ Style: 'Social' }, document));
+  socialContent.after(document.createElement("hr"));
+  socialContent.after(createSectionMetadata({ Style: "Social" }, document));
 }
 
 function addCopyright(document) {
-  document.querySelectorAll('.footer-nav-bottom > nav > a').forEach((a) => {
-    if (a.href === 'https://sunstar.integrityline.com/frontpage') {
-      a.textContent += ' :link-white:';
+  document.querySelectorAll(".footer-nav-bottom > nav > a").forEach((a) => {
+    if (a.href === "https://sunstar.integrityline.com/frontpage") {
+      a.textContent += " :link-white:";
       return;
     }
-    a.href = 'https://main--sunstar-engineering--hlxsites.hlx.live'.concat(a.href).replace(/\/$/, '');
+    a.href = "https://main--sunstar-engineering--sunstar-engineering.hlx.live"
+      .concat(a.href)
+      .replace(/\/$/, "");
   });
-  const copyRight = document.querySelector('.footer-nav-bottom');
-  copyRight.after(document.createElement('hr'));
-  copyRight.after(createSectionMetadata({ Style: 'Copyright' }, document));
+  const copyRight = document.querySelector(".footer-nav-bottom");
+  copyRight.after(document.createElement("hr"));
+  copyRight.after(createSectionMetadata({ Style: "Copyright" }, document));
 }
 
 function reorderContents(document) {
-  const navLinks = document.querySelector('.footer-mega-menu-left-side > .footer-nav-links');
-  const socialContent = document.querySelector('.nav-container.social');
+  const navLinks = document.querySelector(
+    ".footer-mega-menu-left-side > .footer-nav-links"
+  );
+  const socialContent = document.querySelector(".nav-container.social");
   navLinks.after(socialContent);
 }
 
@@ -114,17 +125,20 @@ export default {
    */
   transformDOM: ({
     // eslint-disable-next-line no-unused-vars
-    document, url, html, params,
+    document,
+    url,
+    html,
+    params,
   }) => {
     // define the main element: the one that will be transformed to Markdown
     const main = document.body;
 
     // use helper method to remove header, footer, etc.
     WebImporter.DOMUtils.remove(main, [
-      'noscript',
-      'main > section',
-      'main > div',
-      'header',
+      "noscript",
+      "main > section",
+      "main > div",
+      "header",
     ]);
 
     customImportLogic(document);
@@ -145,6 +159,12 @@ export default {
    */
   generateDocumentPath: ({
     // eslint-disable-next-line no-unused-vars
-    document, url, html, params,
-  }) => WebImporter.FileUtils.sanitizePath(new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')),
+    document,
+    url,
+    html,
+    params,
+  }) =>
+    WebImporter.FileUtils.sanitizePath(
+      new URL(url).pathname.replace(/\.html$/, "").replace(/\/$/, "")
+    ),
 };

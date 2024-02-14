@@ -80,9 +80,12 @@ function getCarouselControl(block, totalLength) {
 
     // eslint-disable-next-line no-loop-func
     innerSpan.onclick = () => {
-      commonOnClick(block, Number(innerSpan.getAttribute('index')));
-      clearInterval(timer);
-      timer = startTimer(block);
+      const isActive = innerSpan.classList.contains('active');
+      if (!isActive) {
+        commonOnClick(block, Number(innerSpan.getAttribute('index')));
+        clearInterval(timer);
+        timer = startTimer(block);
+      }
     };
 
     if (index === 0) {

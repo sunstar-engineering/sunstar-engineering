@@ -25,6 +25,7 @@
 .carousel .text {
   color: var(--white);
   display: flex;
+  height: 28rem;
 }
 
 .carousel img {
@@ -145,6 +146,18 @@ main .section.carousel-container {
   transition-property: all;
   box-sizing: content-box;
   transition-duration: 500ms;
+}
+
+@media (min-width: 36rem) {
+  .carousel .text {
+    height: 23rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .carousel .text {
+    height: 20rem;
+  }
 }
 
 @media (min-width: 62rem) {

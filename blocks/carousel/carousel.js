@@ -82,6 +82,7 @@ function getCarouselControl(block, totalLength) {
     innerSpan.onclick = () => {
       const isActive = innerSpan.classList.contains('active');
       if (!isActive) {
+        // Click on active element handled here
         commonOnClick(block, Number(innerSpan.getAttribute('index')));
         clearInterval(timer);
         timer = startTimer(block);

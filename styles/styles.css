@@ -9,7 +9,11 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
+ @font-face {
+  font-family: 'noto-sans-normal-400-fallback';
+  size-adjust: 105.431%;
+  src: local("Arial");
+}
 
 :root {
   /* colors */
@@ -61,7 +65,7 @@
 
 
   /* fonts */
-  --body-font-family: "Noto Sans";
+  --body-font-family: 'Noto Sans', 'noto-sans-normal-400-fallback';
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 

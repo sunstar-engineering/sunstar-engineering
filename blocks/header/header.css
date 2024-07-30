@@ -214,6 +214,11 @@ header nav.nav-bottom .dropdown-menu.open {
   display: block;
 }
 
+header nav.nav-bottom .dropdown-menu.fixed {
+  left: calc((100vw - 75rem) / -2);
+  width: 100vw;
+}
+
 header nav.nav-bottom .menu-level-1-item > .dropdown-menu * {
   color: var(--white);
 }
@@ -681,7 +686,7 @@ header nav.nav-bottom.fixed::before {
     visibility: visible;
     transition: opacity 0.15s ease-in-out;
     height: 30rem;
-    top: var(--nav-total-height);
+    top: 100%;
   }
 
   header.fixed nav.nav-bottom .menu-level-1-item:hover > .dropdown-menu {

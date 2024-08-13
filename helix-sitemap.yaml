@@ -6,7 +6,6 @@ sitemaps:
     lastmod: YYYY-MM-DD
     languages:
       en:
-        origin: https://www.sunstar-engineering.com
         source: /query-index.json?sheet=en-search
         destination: /sitemap-en.xml
         hreflang: en

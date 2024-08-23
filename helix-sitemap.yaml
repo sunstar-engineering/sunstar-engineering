@@ -1,8 +1,41 @@
 version: 1
 auto-generated: true
 sitemaps:
-  default:
-    origin: https://www.sunstar-engineering.com
-    source: /query-index.json
-    destination: /sitemap.xml
+  sunstar-engineering:
+    default: en
     lastmod: YYYY-MM-DD
+    languages:
+      en:
+        source: /query-index.json?sheet=en-search
+        destination: /sitemap-en.xml
+        hreflang: en
+      cn:
+        source: /query-index.json?sheet=cn-search
+        destination: /sitemap-cn.xml
+        hreflang: cn
+        alternate: /cn/{path}
+      th:
+        source: /query-index.json?sheet=th-search
+        destination: /sitemap-th.xml
+        hreflang: th
+        alternate: /th/{path}
+      it:
+        source: /query-index.json?sheet=it-search
+        destination: /sitemap-it.xml
+        hreflang: it
+        alternate: /it/{path}
+      ja:
+        source: /query-index.json?sheet=ja-search
+        destination: /sitemap-ja.xml
+        hreflang: ja
+        alternate: /ja/{path}
+      id:
+        source: /query-index.json?sheet=id-search
+        destination: /sitemap-id.xml
+        hreflang: id
+        alternate: /id/{path}
+      de:
+        source: /query-index.json?sheet=de-search
+        destination: /sitemap-de.xml
+        hreflang: de
+        alternate: /de/{path}

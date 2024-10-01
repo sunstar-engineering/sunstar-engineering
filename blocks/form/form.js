@@ -1,6 +1,8 @@
 import { getLanguage, loadScript } from '../../scripts/scripts.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 
+let submitURL;
+
 function ensureParagraph(el) {
   // add <p> if missing
   if (!el.querySelector('p')) {
@@ -62,13 +64,13 @@ function constructPayload(form) {
 
 async function submitForm(form) {
   const payload = constructPayload(form);
-  const resp = await fetch(form.dataset.action, {
+  const resp = await fetch(submitURL, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ data: payload }),
+    body: JSON.stringify(payload),
   });
   await resp.text();
   sampleRUM('form:submit');
@@ -308,6 +310,7 @@ window.captchaRenderCallback = () => {
 };
 
 function createCaptcha(fd) {
+  // return; // TODO remove
   captchaElement = document.createElement('div');
 
   window.captchaRenderCallback = () => {
@@ -336,7 +339,7 @@ function createCaptcha(fd) {
   return captchaElement;
 }
 
-async function createForm(formURL) {
+async function createForm(formURL, hiddenFields) {
   const { pathname } = new URL(formURL);
   const resp = await fetch(pathname);
   const json = await resp.json();
@@ -376,7 +379,7 @@ async function createForm(formURL) {
       }
     };
 
-    switch (fd.Type) {
+    switch (fd.Type.toLowerCase()) {
       case 'select':
         append(createLabel(fd));
         appendField(createSelect);
@@ -398,6 +401,9 @@ async function createForm(formURL) {
       case 'captcha':
         append(createCaptcha(fd));
         break;
+      case 'paurl':
+        submitURL = fd.Extra;
+        break;
       default:
         append(createLabel(fd));
         appendField(createInput);
@@ -409,14 +415,40 @@ async function createForm(formURL) {
     }
     form.append(fieldWrapper);
   }
+
+  for (const hf of hiddenFields) {
+    const hidden = document.createElement('input');
+    hidden.type = 'hidden';
+    hidden.id = hf.name;
+    hidden.value = hf.value;
+    form.append(hidden);
+  }
+
   validateForm(form);
   return (form);
 }
 
+const jobFormPosition = /^Position: ([^\n]+)$/;
+function findJobPosition(block) {
+  for (const child of block.children) {
+    const positionMatch = jobFormPosition.exec(child.innerHTML);
+    if (positionMatch) {
+      block.removeChild(child);
+      return positionMatch[1];
+    }
+    const pos = findJobPosition(child);
+    if (pos) {
+      return pos;
+    }
+  }
+}
+
 export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
+  const position = findJobPosition(block);
+
   if (form) {
-    form.replaceWith(await createForm(form.href));
+    form.replaceWith(await createForm(form.href, [{ name: 'Position', value: position }]));
   }
   // convert 2nd row to form-note
   const note = block.querySelector('div > div:nth-child(2) > div');

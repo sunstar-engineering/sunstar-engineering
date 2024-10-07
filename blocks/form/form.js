@@ -310,7 +310,7 @@ window.captchaRenderCallback = () => {
 };
 
 function createCaptcha(fd) {
-  // return; // TODO remove
+  return; // TODO remove
   captchaElement = document.createElement('div');
 
   window.captchaRenderCallback = () => {
@@ -443,12 +443,20 @@ function findJobPosition(block) {
   }
 }
 
+function getHiddenFields(block) {
+  const position = findJobPosition(block);
+  if (position) {
+    return [{ name: 'Position', value: position }];
+  }
+  return [];
+}
+
 export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
-  const position = findJobPosition(block);
+  const hiddenFields = getHiddenFields(block);
 
   if (form) {
-    form.replaceWith(await createForm(form.href, [{ name: 'Position', value: position }]));
+    form.replaceWith(await createForm(form.href, hiddenFields));
   }
   // convert 2nd row to form-note
   const note = block.querySelector('div > div:nth-child(2) > div');

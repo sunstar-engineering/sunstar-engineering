@@ -34,6 +34,10 @@
   width: 100%;
 }
 
+.columns.native-image-sizes img {
+  width: auto!important;
+}
+
 .columns h2,
 .columns h3,
 .columns h4 {

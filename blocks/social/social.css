@@ -31,8 +31,7 @@ main .section.social-container p {
 
 .section.social-container h1 {
   font-weight: var(--font-weight-medium);
-  font-size: var(--heading-font-size-m);
-  line-height: 1.3em;
+  font-size: var(--heading-font-size-l);
   margin: 2rem 0 1.5rem;
 }
 
@@ -90,8 +89,12 @@ main .section.social-container .section-container ul {
   color: var(--link-color);
 }
 
+div.social-container h2 {
+  font-size: var(--heading-font-size-m);
+  margin-bottom: 1.5rem;
+}
+
 div.social-container h3 {
-  font-weight: var(--font-weight-bold);
   font-size: var(--heading-font-size-ms);
   margin-bottom: 1.5rem;
 }
@@ -113,7 +116,7 @@ div.social-container h3 {
   }
 
   main .section.social-container h1 {
-    font-size: 2.25rem;
+    font-size: var(--heading-font-size-xl);
     line-height: 1.3em;
     margin: 5rem 0 2rem;
   }
@@ -137,6 +140,9 @@ div.social-container h3 {
   main .section.social-container h1 + p {
     font-size: var(--font-size-small);
     margin-bottom: 2rem;
+  }
+  div.social-container h2 {
+    font-size: var(--heading-font-size-l);
   }
 
   div.social-container h3 {

@@ -32,7 +32,7 @@ function createSectionMetadata(cfg, doc) {
 function addDetailPageNav(document) {
   const detailPageNav = document.querySelector(".mega-footer-container");
   detailPageNav.querySelectorAll("a").forEach((a) => {
-    a.href = "https://main--sunstar-engineering--sunstar-engineering.hlx.live"
+    a.href = "https://main--sunstar-engineering--sunstar-engineering.aem.live"
       .concat(a.href)
       .replace(/\/$/, "");
   });
@@ -43,7 +43,7 @@ function addDetailPageNav(document) {
 function addCategoryNav(document) {
   const ul = document.createElement("ul");
   document.querySelectorAll(".footer-nav-links > a").forEach((a) => {
-    a.href = "https://main--sunstar-engineering--sunstar-engineering.hlx.live"
+    a.href = "https://main--sunstar-engineering--sunstar-engineering.aem.live"
       .concat(a.href)
       .replace(/\/$/, "");
     const li = document.createElement("li");
@@ -88,7 +88,7 @@ function addCopyright(document) {
       a.textContent += " :link-white:";
       return;
     }
-    a.href = "https://main--sunstar-engineering--sunstar-engineering.hlx.live"
+    a.href = "https://main--sunstar-engineering--sunstar-engineering.aem.live"
       .concat(a.href)
       .replace(/\/$/, "");
   });

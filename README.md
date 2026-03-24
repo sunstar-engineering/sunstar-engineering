@@ -2,7 +2,7 @@
 Franklin project for https://www.sunstar-engineering.com/
 
 ## Environments
-- Preview: https://main--sunstar-engineering--sunstar-engineering.hlx.page/
+- Preview: https://main--sunstar-engineering--sunstar-engineering.aem.page/
 - Live: https://main--sunstar-engineering--sunstar-engineering.aem.live/
 - Edit: https://sunstarsuisse.sharepoint.com/sites/GlobalSunstarWebsite/Shared%20Documents/websites/sunstar-engineering
 

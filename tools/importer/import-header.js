@@ -80,7 +80,7 @@ function addMidNav(document, url) {
   const midNav = document.querySelector("nav.ss-header-middle");
   if (midNav) {
     midNav.innerHTML = `
-    <a href='https://main--sunstar-engineering--sunstar-engineering.hlx.page/${lang}'>:sunstar-logo:</a>
+    <a href='https://main--sunstar-engineering--sunstar-engineering.aem.page/${lang}'>:sunstar-logo:</a>
     <h4>Sunstar Engineering</h4>
   `;
     midNav.after(document.createElement("hr"));
